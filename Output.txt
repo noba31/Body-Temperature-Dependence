@@ -1,0 +1,77 @@
+> library(readr)
+> bodytemp_heartrate <- read_csv("fakepath/bodytemp-heartrate.csv")
+Parsed with column specification:
+cols(
+  body_temperature = col_double(),
+  gender = col_integer(),
+  heart_rate = col_integer()
+)
+> gender <- split(bodytemp_heartrate, f= bodytemp_heartrate$gender)
+> male <- gender$`1`
+> female <- gender$`2`
+> bodyTemp <- boxplot(male$body_temperature, female$body_temperature, names = c("male body temp", "female body temp"), main = "Body temperature vs Gender")
+> summary(male$body_temperature)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   96.3    97.6    98.1    98.1    98.6    99.5 
+> summary(female$body_temperature)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  96.40   98.00   98.40   98.39   98.80  100.80 
+> alpha <- 0.05
+> tempTest <- t.test(male$body_temperature, female$body_temperature, alternative = "two.sided", var.equal = FALSE, conf.level = 1-alpha)
+> tempTest
+
+	Welch Two Sample t-test
+
+data:  male$body_temperature and female$body_temperature
+t = -2.2854, df = 127.51, p-value = 0.02394
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.53964856 -0.03881298
+sample estimates:
+mean of x mean of y 
+ 98.10462  98.39385 
+
+> library(readr)
+> bodytemp_heartrate <- read_csv("fakepath/bodytemp-heartrate.csv")
+Parsed with column specification:
+cols(
+  body_temperature = col_double(),
+  gender = col_integer(),
+  heart_rate = col_integer()
+)
+> gender <- split(bodytemp_heartrate, f= bodytemp_heartrate$gender)
+> male <- gender$`1`
+> female <- gender$`2`
+> heartRate <- boxplot(male$heart_rate, female$heart_rate, names = c("male heart rate", "female heart rate"), main = "Heart rate vs Gender")
+> summary(male$heart_rate)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  58.00   70.00   73.00   73.37   78.00   86.00 
+> summary(female$heart_rate)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  57.00   68.00   76.00   74.15   80.00   89.00 
+> alpha <- 0.05
+> heartTest <- t.test(male$heart_rate, female$heart_rate, alternative = "two.sided", var.equal = FALSE, conf.level = 1-alpha)
+> heartTest
+
+	Welch Two Sample t-test
+
+data:  male$heart_rate and female$heart_rate
+t = -0.63191, df = 116.7, p-value = 0.5287
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.243732  1.674501
+sample estimates:
+mean of x mean of y 
+ 73.36923  74.15385 
+
+> a <- lm(male$body_temperature ~ male$heart_rate)
+> plot(male$heart_rate, male$body_temperature, xlab = "male heart rate", ylab = "male body temp")
+> abline(a)
+> b <- lm(female$body_temperature ~ female$heart_rate)
+> plot(female$heart_rate, female$body_temperature, xlab = "female heart rate", ylab = "female body temp")
+> abline(b)
+> x <- bodytemp_heartrate$body_temperature
+> y <- bodytemp_heartrate$heart_rate
+> c <- lm(x~y)
+> plot(y, x, ylab = "body temp", xlab = "heart rate")
+> abline(c)
