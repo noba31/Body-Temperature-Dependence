@@ -7,22 +7,16 @@ Consider the data stored in bodytemp-heartrate.csv, containing measurements of b
 # Observations
 By looking at the data values, the assumption of normality cannot be assumed to this data. Hence, we examine box plots to see if the two distributions have equal variance.
 
-1. From the boxplot, we can understand the following:
-  a.	Variability of male body temperature: Q3 – Q1 = 98.6 – 97.6 = 1.
-  b.	Variability of female body temperature: Q3 – Q1 = 98.8 – 98 = 0.8.
-  c.	It seems that the male body temperatures are slightly more variable than the female body temperatures. Therefore, we go with               Satterthwaite's approximation.
+1. From the boxplot, we can understand the following: Variability of male body temperature: Q3 – Q1 = 98.6 – 97.6 = 1. Variability of female body temperature: Q3 – Q1 = 98.8 – 98 = 0.8. It seems that the male body temperatures are slightly more variable than the female body temperatures. Therefore, we go with Satterthwaite's approximation.
   
-  OBSERVATION: 
-  Since p-value < alpha, we reject the null hypothesis, i.e, we reject the hypothesis that “the mean body temperatures for males and         females are equal”. We conclude that they are not equal.
+OBSERVATION: 
+Since p-value < alpha, we reject the null hypothesis, i.e, we reject the hypothesis that “the mean body temperatures for males and females are equal”. We conclude that they are not equal.
+
+2. From the boxplots, we understand the following: Variability of male heart rate = Q3 – Q1 = 78 – 70 = 8. Variability of female heart rate = Q3 – Q1 = 80-68 = 12. It is obvious from the boxplots above that female heart rate has more variability than male heart rate. Therefore, we go with Satterthwaite's approximation.
   
-2. From the boxplots, we understand the following:
-  a.	Variability of male heart rate = Q3 – Q1 = 78 – 70 = 8
-  b.	Variability of female heart rate = Q3 – Q1 = 80-68 = 12
-  c.	It is obvious from the boxplots above that female heart rate has more variability than male heart rate. Therefore, we go with               Satterthwaite's approximation.
-  
-  OBSERVATION:
-  Since p – value > alpha, we accept the null hypothesis. The mean heart rates of males and females are the same.
-  
+OBSERVATION:
+Since p – value > alpha, we accept the null hypothesis. The mean heart rates of males and females are the same.
+
 3. Plot 1: Body temp vs Heart rate (Male)
 In this plot, the plot points are scattered about the regression line. There isn’t a clear-cut pattern of linearity that can be detected. Therefore, it can be concluded that Plot 1 is not exactly linear. Lack of linearity implies that running a correlation calculation on the concerned data set would be futile. It would lead to a very small percentage of correlation and may lead us to believe that it may be non-linear, which may be incorrect altogether. Hence, Plot 1 displays very little linearity for us to arrive at a proper conclusion.
 
